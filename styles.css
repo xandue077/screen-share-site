@@ -794,34 +794,3 @@ select {
   border: 2px solid var(--accent);
   cursor: pointer;
 }
-
-.mono-area {
-  height: auto;
-  min-height: 88px;
-  padding: 10px 12px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 11px;
-  line-height: 1.5;
-  resize: vertical;
-}
-
-.share-video {
-  width: 100%;
-  margin-top: 14px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #05080c;
-}
-
-.checkline {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.checkline input {
-  width: auto;
-}
