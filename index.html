@@ -1,59 +1,89 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GitHub Screen Share</title>
-  <link rel="stylesheet" href="/styles.css">
-  <script src="/app.js" defer></script>
-</head>
-<body>
-  <main class="wrap">
-    <header class="hero">
-      <div class="badge">100% GitHub Pages</div>
-      <h1>Screen share without a phone</h1>
-      <p>Browser-to-browser WebRTC screen sharing. No backend, no tokens, no phone runtime.</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Screen Share — Bot Panel</title>
+    <meta name="description" content="Browser-to-browser WebRTC screen share that runs fully on GitHub Pages." />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <div class="brand-mark">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z" />
+          </svg>
+        </div>
+        <div style="min-width: 0">
+          <div class="who-name">Screen Share</div>
+          <div class="who-sub"><span class="dot"></span><span>100% GitHub Pages · WebRTC</span></div>
+        </div>
+        <div class="spacer"></div>
+        <span class="chip">No backend</span>
+      </div>
     </header>
 
-    <section class="grid">
-      <article class="card">
-        <div class="step">1 · Broadcaster</div>
-        <h2>Share your screen</h2>
-        <label class="check"><input id="includeAudio" type="checkbox"> Include system/tab audio</label>
-        <div class="row">
-          <button id="startBtn" type="button">Start sharing</button>
-          <button id="stopBtn" type="button" class="secondary">Stop</button>
+    <main class="wrap main">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Broadcaster</div>
+            <p class="panel-sub">Share your screen, then send the offer to the viewer.</p>
+          </div>
+          <span class="chip chip-link">Step 1</span>
         </div>
-        <p id="broadcasterStatus" class="status">Idle.</p>
-        <video id="localPreview" autoplay muted playsinline></video>
 
-        <label for="offer">Offer — send this to the viewer</label>
-        <textarea id="offer" readonly spellcheck="false" placeholder="Offer appears here after screen capture starts."></textarea>
-        <button id="copyOfferBtn" type="button" class="secondary">Copy offer</button>
+        <label class="checkline"><input id="includeAudio" type="checkbox" /> Include system or tab audio</label>
 
-        <label for="answerInput">Answer — paste from the viewer</label>
-        <textarea id="answerInput" spellcheck="false" placeholder="Paste the viewer answer here."></textarea>
-        <button id="applyAnswerBtn" type="button">Connect viewer</button>
-      </article>
+        <div class="search-row">
+          <button class="btn btn-primary" id="startBtn" type="button">Start sharing</button>
+          <button class="btn btn-ghost" id="stopBtn" type="button">Stop</button>
+        </div>
 
-      <article class="card">
-        <div class="step">2 · Viewer</div>
-        <h2>Watch the stream</h2>
-        <label for="offerInput">Offer — paste from the broadcaster</label>
-        <textarea id="offerInput" spellcheck="false" placeholder="Paste the broadcaster offer here."></textarea>
-        <button id="createAnswerBtn" type="button">Create answer</button>
-        <p id="viewerStatus" class="status">Idle.</p>
-        <video id="remoteVideo" autoplay playsinline controls></video>
+        <div id="broadcasterStatus" class="hint" style="margin-top: 12px">Idle.</div>
+        <video id="localPreview" class="share-video" autoplay muted playsinline></video>
 
-        <label for="answer">Answer — send this back</label>
-        <textarea id="answer" readonly spellcheck="false" placeholder="Answer appears here after the offer is accepted."></textarea>
-        <button id="copyAnswerBtn" type="button" class="secondary">Copy answer</button>
-      </article>
-    </section>
+        <label class="field" style="margin-top: 18px">
+          <span>Offer — send this to the viewer</span>
+          <textarea id="offer" class="input mono-area" readonly spellcheck="false" placeholder="Offer appears here after screen capture starts."></textarea>
+        </label>
+        <button class="btn btn-ghost" id="copyOfferBtn" type="button">Copy offer</button>
 
-    <footer>
-      <p>Copy the broadcaster offer to the viewer, then copy the viewer answer back to the broadcaster. Both browsers must stay open.</p>
-    </footer>
-  </main>
-</body>
+        <label class="field" style="margin-top: 18px">
+          <span>Answer — paste from the viewer</span>
+          <textarea id="answerInput" class="input mono-area" spellcheck="false" placeholder="Paste the viewer answer here."></textarea>
+        </label>
+        <button class="btn btn-primary" id="applyAnswerBtn" type="button">Connect viewer</button>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Viewer</div>
+            <p class="panel-sub">Paste the offer, create the answer, then send it back.</p>
+          </div>
+          <span class="chip chip-link">Step 2</span>
+        </div>
+
+        <label class="field">
+          <span>Offer — paste from the broadcaster</span>
+          <textarea id="offerInput" class="input mono-area" spellcheck="false" placeholder="Paste the broadcaster offer here."></textarea>
+        </label>
+        <button class="btn btn-primary" id="createAnswerBtn" type="button">Create answer</button>
+
+        <div id="viewerStatus" class="hint" style="margin-top: 12px">Idle.</div>
+        <video id="remoteVideo" class="share-video" autoplay playsinline controls></video>
+
+        <label class="field" style="margin-top: 18px">
+          <span>Answer — send this back</span>
+          <textarea id="answer" class="input mono-area" readonly spellcheck="false" placeholder="Answer appears here after the offer is accepted."></textarea>
+        </label>
+        <button class="btn btn-ghost" id="copyAnswerBtn" type="button">Copy answer</button>
+
+        <p class="hint" style="margin-top: 18px">Both browsers must stay open while the stream is running.</p>
+      </section>
+    </main>
+  </body>
 </html>

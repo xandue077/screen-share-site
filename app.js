@@ -28,7 +28,7 @@ let viewerPc = null;
 
 function setStatus(element, message, kind = "") {
   element.textContent = message;
-  element.className = `status ${kind}`.trim();
+  element.className = kind === "good" ? "alert alert-ok" : kind === "bad" ? "alert alert-error" : "hint";
 }
 
 function parseDescription(text, expectedType, label) {
