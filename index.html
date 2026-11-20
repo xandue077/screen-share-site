@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GitHub Screen Share</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="badge">100% GitHub Pages</div>
+      <h1>Screen share without a phone</h1>
+      <p>Browser-to-browser WebRTC screen sharing. No backend, no tokens, no phone runtime.</p>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <div class="step">1 · Broadcaster</div>
+        <h2>Share your screen</h2>
+        <label class="check"><input id="includeAudio" type="checkbox"> Include system/tab audio</label>
+        <div class="row">
+          <button id="startBtn" type="button">Start sharing</button>
+          <button id="stopBtn" type="button" class="secondary">Stop</button>
+        </div>
+        <p id="broadcasterStatus" class="status">Idle.</p>
+        <video id="localPreview" autoplay muted playsinline></video>
+
+        <label for="offer">Offer — send this to the viewer</label>
+        <textarea id="offer" readonly spellcheck="false" placeholder="Offer appears here after screen capture starts."></textarea>
+        <button id="copyOfferBtn" type="button" class="secondary">Copy offer</button>
+
+        <label for="answerInput">Answer — paste from the viewer</label>
+        <textarea id="answerInput" spellcheck="false" placeholder="Paste the viewer answer here."></textarea>
+        <button id="applyAnswerBtn" type="button">Connect viewer</button>
+      </article>
+
+      <article class="card">
+        <div class="step">2 · Viewer</div>
+        <h2>Watch the stream</h2>
+        <label for="offerInput">Offer — paste from the broadcaster</label>
+        <textarea id="offerInput" spellcheck="false" placeholder="Paste the broadcaster offer here."></textarea>
+        <button id="createAnswerBtn" type="button">Create answer</button>
+        <p id="viewerStatus" class="status">Idle.</p>
+        <video id="remoteVideo" autoplay playsinline controls></video>
+
+        <label for="answer">Answer — send this back</label>
+        <textarea id="answer" readonly spellcheck="false" placeholder="Answer appears here after the offer is accepted."></textarea>
+        <button id="copyAnswerBtn" type="button" class="secondary">Copy answer</button>
+      </article>
+    </section>
+
+    <footer>
+      <p>Copy the broadcaster offer to the viewer, then copy the viewer answer back to the broadcaster. Both browsers must stay open.</p>
+    </footer>
+  </main>
+</body>
+</html>
